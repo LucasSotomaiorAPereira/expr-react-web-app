@@ -1,5 +1,6 @@
-import "./App.css"; // Importa os estilos da aplicação
-import DataList from "./components/DataList";
+import "./App.css";
+import Navbar from "./Components/Navbar";
+import DataList from "./Components/DataList";
 import { useState } from "react";
 
 function App() {

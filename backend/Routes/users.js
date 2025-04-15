@@ -1,11 +1,11 @@
 import express from "express";
-import { getUsers, addUser, delUser, updateUser } from "../Controllers/users.js";
+import { getLinguagens, addLinguagem, deleteLinguagem, updateLinguagem } from "../Controllers/users.js";
 
 const router = express.Router();
 
-router.get('/', getUsers);
-router.post('/add', addUser);
-router.put('/update', updateUser);
-router.delete('/del', delUser);
+router.get('/', getLinguagens);
+router.post('/add', addLinguagem);
+router.put('/update', updateLinguagem);
+router.delete('/del', deleteLinguagem);
 
 export default router;
