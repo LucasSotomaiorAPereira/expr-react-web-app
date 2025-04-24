@@ -1,13 +1,27 @@
 import React from 'react';
+import { Link } from "react-router-dom"
+
 
 function Navbar() {
   return (
     <div className='navigation-menu'>
-        <ol>
-            <li>Listagem dos Dados</li>
-            <li>Crud</li>
-            <li>Detalhes</li>
-        </ol>
+        <Link to = '/'>
+        <button>
+          Linguagens
+        </button>
+      </Link>
+
+      <Link to = '/details'>
+        <button>
+          Detalhes
+        </button>
+      </Link>
+
+      <Link to = '/crud'>
+        <button>
+          Crud
+        </button>
+      </Link>
     </div>
 
   )

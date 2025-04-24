@@ -1,40 +1,22 @@
 import "./App.css";
-import Navbar from "./Components/Navbar";
-import DataList from "./Components/DataList";
-import { useState } from "react";
+import {HashRouter as Router, Routes, Route} from 'react-router-dom'
+import { Languages } from "./pages/languages";
+import { Details } from "./pages/details";
+import { Crud } from "./pages/crud";
+import { Layout } from "./Layout";
 
 function App() {
-    const [modalIsOpen, setModalIsOpen] = useState(false);
-    const [itemClicked, setItemClicked] = useState(null);
-
-    function clicked(item) {
-        console.log("Clicou no item", item.id);
-        setModalIsOpen(true);
-        setItemClicked(item);
-    }
-
-    function closeModal() {
-        setModalIsOpen(false);
-        setItemClicked(null);
-    }
-
-    return (
-        <div>
-            <DataList clicked={clicked} />
-
-            {modalIsOpen && itemClicked && (
-                <div className="modal">
-                    <div className="modal-content">
-                        <h1>Detalhes do Usuário</h1>
-                        <p><strong>Nome:</strong> {itemClicked.name}</p>
-                        <p><strong>Idade:</strong> {itemClicked.age}</p>
-                        <p><strong>CPF:</strong> {itemClicked.cpf}</p>
-                        <button onClick={closeModal}>Fechar</button>
-                    </div>
-                </div>
-            )}
-        </div>
-    );
+    return(
+        <Router>
+            <Routes>
+                <Route element = {<Layout/>}>
+                    <Route path = '/' element = {<Languages/>}/>
+                    <Route path = '/details' element = {<Details/>}/>
+                    <Route path = '/crud' element = {<Crud/>}/>
+                </Route>
+            </Routes>
+        </Router>
+    )
 }
 
 export default App;
