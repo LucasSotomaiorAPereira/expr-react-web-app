@@ -1,38 +1,39 @@
-import { useState } from "react";
-import DataList from "../Components/DataList";
-
+import React from "react";
+import { useLocation, useNavigate } from "react-router-dom"; 
 
 export function Details() {
-    const [modalIsOpen, setModalIsOpen] = useState(false);
-    const [itemClicked, setItemClicked] = useState(null);
+    const location = useLocation();
+    const navigate = useNavigate();
+    const item = location.state?.item;
 
-    function clicked(item) {
-        console.log("Clicou no item", item.id);
-        setModalIsOpen(true);
-        setItemClicked(item);
+
+    if (!item) {
+        return (
+            <div>
+                <h1>Detalhes da Linguagem</h1>
+                <p>Nenhuma linguagem selecionada. Volte para a lista e clique em 'Mais detalhes'.</p>
+                <button onClick={() => navigate('/')}>Voltar para Lista</button>
+            </div>
+        );
     }
 
-    function closeModal() {
-        setModalIsOpen(false);
-        setItemClicked(null);
+    function goBack() {
+        navigate('/');
     }
 
     return (
         <div>
-
-            <DataList clicked={clicked} />
-
-            {modalIsOpen && itemClicked && (
-                <div className="modal">
-                    <div className="modal-content">
-                        <h1>Detalhes do Usuário</h1>
-                        <p><strong>Nome:</strong> {itemClicked.name}</p>
-                        <p><strong>Idade:</strong> {itemClicked.age}</p>
-                        <p><strong>CPF:</strong> {itemClicked.cpf}</p>
-                        <button onClick={closeModal}>Fechar</button>
-                    </div>
-                </div>
-            )}
+            <h1>Detalhes da Linguagem</h1>
+            <div className="details-content">
+                <p><strong>Nome:</strong> {item.nome}</p>
+                <p><strong>Ano de Criação:</strong> {item.ano_criacao}</p>
+                <p><strong>Criador:</strong> {item.criador}</p>
+                <p><strong>Paradigma Principal:</strong> {item.paradigma_principal}</p>
+                <p><strong>Tipagem:</strong> {item.tipagem}</p>
+                <p><strong>Site Oficial:</strong> <a href={item.site_oficial} target="_blank" rel="noopener noreferrer">{item.site_oficial}</a></p>
+                <p><strong>Descrição:</strong> {item.descricao}</p>
+                <button onClick={goBack}>Voltar para Lista</button>
+            </div>
         </div>
     );
 }

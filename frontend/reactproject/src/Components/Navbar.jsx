@@ -11,11 +11,11 @@ function Navbar() {
         </button>
       </Link>
 
-      <Link to = '/details'>
+      {/* <Link to = '/details'>
         <button>
           Detalhes
         </button>
-      </Link>
+      </Link> */}
 
       <Link to = '/crud'>
         <button>
