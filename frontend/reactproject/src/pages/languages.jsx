@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom"; 
+import { useNavigate } from "react-router-dom";
 
 export function Languages() {
     const [data, setData] = useState([]);
     const navigate = useNavigate();
 
-    const buscarLinguagens = () => {
+    const fetchLanguages = () => {
         fetch("http://localhost:8800")
             .then((response) => response.json())
             .then((data) => {
@@ -17,7 +17,7 @@ export function Languages() {
     }
 
     useEffect(() => {
-        buscarLinguagens();
+        fetchLanguages();
     }, []);
 
     function handleDetailsClick(item) {
@@ -32,18 +32,11 @@ export function Languages() {
             ) : (
                 <ul className="list">
                     {data.map((item, index) => (
-                        <li key={index} className="li-list">
+                        <li key={index} className="list-item">
                             <div>
-                                Nome: {item.nome}<br />
-                                Ano de criação: {item.ano_criacao}<br />
-                                Criador: {item.criador}<br />
-                                Paradigma principal: {item.paradigma_principal}<br />
-                                Tipagem: {item.tipagem}<br />
-                                Site Oficial: <a href={item.site_oficial} target="_blank" rel="noopener noreferrer">{item.site_oficial}</a><br />
-                                Descrição: {item.descricao}<br />
+                                Nome: {item.nome}<br /> 
                             </div>
-                            {/* Updated Button to use navigate */}
-                            <button className="btn-list" onClick={() => handleDetailsClick(item)}>
+                            <button className="list-button" onClick={() => handleDetailsClick(item)}>
                                 Mais detalhes
                             </button>
                         </li>
@@ -51,5 +44,5 @@ export function Languages() {
                 </ul>
             )}
         </>
-    )
+    );
 }

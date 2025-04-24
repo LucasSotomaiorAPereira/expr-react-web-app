@@ -1,11 +1,10 @@
 import React from "react";
-import { useLocation, useNavigate } from "react-router-dom"; 
+import { useLocation, useNavigate } from "react-router-dom";
 
 export function Details() {
     const location = useLocation();
     const navigate = useNavigate();
     const item = location.state?.item;
-
 
     if (!item) {
         return (
