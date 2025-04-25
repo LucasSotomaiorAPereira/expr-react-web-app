@@ -154,9 +154,6 @@
   gap: var(--space-sm);
 }
 
-.modal-content button {
-}
-
 .form-section {
   background-color: var(--color-background-light);
   padding: var(--space-xl);
